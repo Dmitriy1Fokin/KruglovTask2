@@ -1,3 +1,6 @@
 ﻿  KruglovTask2.cpp
+d:\workspacecpp\kruglovtask2\kruglovtask2\kruglovtask2.cpp(27): warning C4018: <: несоответствие типов со знаком и без знака
+d:\workspacecpp\kruglovtask2\kruglovtask2\kruglovtask2.cpp(121): warning C4018: <: несоответствие типов со знаком и без знака
+d:\workspacecpp\kruglovtask2\kruglovtask2\kruglovtask2.cpp(128): warning C4018: >: несоответствие типов со знаком и без знака
   KruglovTask2.vcxproj -> D:\workspaceCpp\KruglovTask2\Debug\KruglovTask2.exe
   KruglovTask2.vcxproj -> D:\workspaceCpp\KruglovTask2\Debug\KruglovTask2.pdb (Partial PDB)

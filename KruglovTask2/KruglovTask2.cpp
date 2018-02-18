@@ -4,10 +4,12 @@ using namespace std;
 string ReadFromTextToString(string pathToTextFile);
 string TextFormatting(string originText);
 string BigWordChangeToVau(const string originText);
+vector<string> SplitString(const string originString, const int lenOfNewString);
 
 void main()
 {
 	string mainString, stringAfterFormat;
+	vector<string> vectorOfString;
 	
 	mainString = ReadFromTextToString("Text.txt");
 	cout << mainString;
@@ -20,6 +22,10 @@ void main()
 	stringAfterFormat = BigWordChangeToVau(stringAfterFormat);
 	cout << stringAfterFormat;
 
+	cout << "\n\nText separate to string with length 40.\n\n";
+	vectorOfString = SplitString(stringAfterFormat, 40);
+	for (int i = 0; i < vectorOfString.size(); i++)
+		cout << i << ":\t" << vectorOfString[i] << endl;
 
 	
 	_getch();
@@ -85,7 +91,7 @@ string TextFormatting(const string originText)
 	return formatString;
 }
 
-string BigWordChangeToVau (const string originText)
+string BigWordChangeToVau(const string originText)
 {
 	stringstream stringfBuff(originText);
 	string temp, outputString;
@@ -102,4 +108,40 @@ string BigWordChangeToVau (const string originText)
 	}
 
 	return outputString;
+}
+
+vector<string> SplitString(const string originString, const int lenOfNewString)
+{
+	stringstream stringBuff(originString);
+	string temp, newString;
+	vector<string> finalVectorOfSplitString;
+
+	while (stringBuff >> temp)
+	{
+		if (newString.length() < lenOfNewString)
+		{
+			newString += " ";
+			newString += temp;
+			newString += " ";
+		}
+
+		if (newString.length() > lenOfNewString)
+		{
+			newString.erase(newString.length() - temp.length() - 1);
+			finalVectorOfSplitString.push_back(newString);
+			newString.clear();
+			newString += temp;
+		}	
+
+		if (newString.length() == lenOfNewString)
+		{
+			finalVectorOfSplitString.push_back(newString);
+			newString.clear();
+			newString += temp;
+		}
+	}
+
+	finalVectorOfSplitString.push_back(newString);
+
+	return finalVectorOfSplitString;
 }
