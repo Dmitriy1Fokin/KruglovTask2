@@ -3,11 +3,12 @@
 using namespace std;
 string ReadFromTextToString(string pathToTextFile);
 string TextFormatting(string originText);
+string BigWordChangeToVau(const string originText);
 
 void main()
 {
-	string mainString, stringAfterFormat;;
-
+	string mainString, stringAfterFormat;
+	
 	mainString = ReadFromTextToString("Text.txt");
 	cout << mainString;
 	
@@ -15,6 +16,12 @@ void main()
 	stringAfterFormat = TextFormatting(mainString);
 	cout << stringAfterFormat;
 
+	cout << "\n\nText without long word:\n\n";
+	stringAfterFormat = BigWordChangeToVau(stringAfterFormat);
+	cout << stringAfterFormat;
+
+
+	
 	_getch();
 }
 
@@ -44,7 +51,8 @@ string TextFormatting(const string originText)
 	{
 		if (formatString[i] == ',' || formatString[i] == '.' ||
 			formatString[i] == '?' || formatString[i] == '!' ||
-			formatString[i] == ':' || formatString[i] == ';')
+			formatString[i] == ':' || formatString[i] == ';' || 
+			formatString[i] == '"')
 		{
 			if (formatString[i + 1] != ' ')
 				formatString.insert(i + 1, " ");
@@ -63,9 +71,35 @@ string TextFormatting(const string originText)
 
 			sizeOfString = formatString.length();
 		}
+
+		if (formatString[i] == ' ')
+		{
+			if (formatString[i + 1] == ' ')
+				while (formatString[i + 1] == ' ')
+					formatString.erase(i + 1, 1);
+			
+			sizeOfString = formatString.length();
+		}
 	}
 		
-
-
 	return formatString;
+}
+
+string BigWordChangeToVau (const string originText)
+{
+	stringstream stringfBuff(originText);
+	string temp, outputString;
+
+	while (stringfBuff >> temp)
+	{
+		if (temp.length() > 10)
+		{
+			temp = "Vau!!!";
+		}
+		outputString += " ";
+		outputString += temp;
+		outputString += " ";
+	}
+
+	return outputString;
 }
